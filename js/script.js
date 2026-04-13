@@ -162,6 +162,7 @@ if(form && formMessage){
         const email = emailField.value.trim();
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+        
         if(!emailPattern.test(email)){
             emailField.setCustomValidity("Please enter a valid email (example: name@email.com)");
         }else{
@@ -191,6 +192,22 @@ if(form && formMessage){
         // success
         formMessage.style.color = "#16a34a";
         formMessage.textContent = "✓ Message sent successfully!";
+
+
+        // trigger fade IN
+        requestAnimationFrame(() => {
+            formMessage.style.opacity = "1";
+        });
+
+        // fade OUT after 3s
+        setTimeout(() => {
+           formMessage.style.opacity = "0";
+        }, 3000);
+
+        // clear text AFTER fade finishes
+        setTimeout(() => {
+           formMessage.textContent = "";
+        }, 3600);
 
         form.reset();
     });
