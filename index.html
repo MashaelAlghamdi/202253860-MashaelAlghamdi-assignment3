@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mashael Alghamdi | Portfolio</title>
     <meta name="description" content="Personal portfolio of Mashael Alghamdi, Computer Science student.">
     <!-- Google Font -->
@@ -22,7 +23,7 @@
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <button id="theme-toggle" class="theme-toggle">🌙</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
     </div>
 </nav>
 
@@ -34,40 +35,71 @@
         <p class="description">
             A Computer Science student who is passionate about building structured and user-focused digital experiences.
         </p>
+
+        <!-- visit timer badge -->
+        <div class="visit-badge">
+            <span class="badge-dot"></span>
+            <span>Time on page: </span>
+            <span id="visit-timer">0s</span>
+        </div>
+
+        <!-- CTA buttons -->
+        <div class="hero-cta">
+            <a href="#projects" class="btn-primary">View Projects</a>
+            <a href="#contact"  class="btn-ghost">Get in Touch</a>
+        </div>
     </div>
 </header>
 
-<!-- random tech facts -->
+<!-- random tech facts (API) -->
 <div class="container narrow">
-    <div class="container narrow fact-box">
+    <div class="fact-box">
         <h2>Random Tech Fact</h2>
         <p id="api-data">Press the button to generate a fact.</p>
+        <div class="fact-loader" id="fact-loader"></div>
         <button id="fact-btn">Generate Fact</button>
     </div>
+
     <div class="section-divider"></div>
 
-<!-- about section -->
-<section id="about" class="section">
-    <h2>About Me</h2>
-    <p>
-        An ambitious Computer Science student who enjoys building websites and learning new technologies while developing structured and user-friendly applications.
-    </p>
-    <p class="tagline"><em>Progress over perfection.</em></p>
-</section>
+    <!-- about section -->
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <p>
+            An ambitious Computer Science student who enjoys building websites and learning new technologies
+            while developing structured and user-friendly applications.
+        </p>
+        <p class="tagline"><em>Progress over perfection.</em></p>
+
+        <!-- skill chips -->
+        <div class="skill-chips">
+            <span class="chip">Python</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">C++</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Machine Learning</span>
+            <span class="chip">Web Dev</span>
+        </div>
+    </section>
 </div>
 
-<!-- projects sections -->
+<!-- projects section -->
 <section id="projects" class="section alt-section">
     <div class="container">
         <h2>Projects</h2>
-        <!-- Project Controls -->
+
+        <!-- project controls -->
         <div class="project-controls">
-            <input
-                type="text"
-                id="project-search"
-                placeholder="Search projects..."
-                class="project-search">
-            <select id="project-sort" class="project-sort">
+            <div class="search-wrap">
+                <span class="search-icon">⌕</span>
+                <input
+                    type="text"
+                    id="project-search"
+                    placeholder="Search projects..."
+                    class="project-search"
+                    aria-label="Search projects">
+            </div>
+            <select id="project-sort" class="project-sort" aria-label="Sort projects">
                 <option value="default">Default Order</option>
                 <option value="az">Sort A → Z</option>
                 <option value="za">Sort Z → A</option>
@@ -75,58 +107,97 @@
         </div>
 
         <div class="projects-wrapper">
+
             <!-- PROJECT 1 -->
             <div class="project-card">
-                <img src="assets/images/project1.jpg" class="project-img">
+                <img
+                    src="assets/images/project1.jpg"
+                    class="project-img"
+                    alt="Horse Racing Database System — SQL relational database project">
                 <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">Database</span>
+                        <span class="project-tag">SQL</span>
+                    </div>
                     <div class="project-header">
-                        <h3 class="project-title">Horse Racing Database system</h3>
+                        <h3 class="project-title">Horse Racing Database System</h3>
                     </div>
                     <p class="project-description">
-                        Designed and implemented a normalized relational database with optimized SQL queries.
+                        Designed and implemented a normalized relational database with optimized SQL queries,
+                        ER diagrams, and full data integrity constraints for a horse racing management system.
                     </p>
                 </div>
             </div>
 
             <!-- PROJECT 2 -->
             <div class="project-card">
-                <img src="assets/images/project2.jpg" class="project-img">
+                <img
+                    src="assets/images/project2.jpg"
+                    class="project-img"
+                    alt="Smart Traffic Light Controller — FPGA finite state machine project">
                 <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">Hardware</span>
+                        <span class="project-tag">FPGA</span>
+                    </div>
                     <div class="project-header">
                         <h3 class="project-title">Smart Traffic Light Controller</h3>
                     </div>
                     <p class="project-description">
-                        Finite State Machine implementation of a traffic light controller that manages signal transitions and timing between traffic phases using FGPA board.                    </p>
+                        Finite State Machine implementation of a traffic light controller that manages
+                        signal transitions and timing between traffic phases using an FPGA board.
+                    </p>
                 </div>
             </div>
 
             <!-- PROJECT 3 -->
             <div class="project-card">
-                <img src="assets/images/project3.jpg" class="project-img">
+                <img
+                    src="assets/images/project3.jpg"
+                    class="project-img"
+                    alt="Mobile Price Classification — machine learning predictive model">
                 <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">Machine Learning</span>
+                        <span class="project-tag">Python</span>
+                    </div>
                     <div class="project-header">
                         <h3 class="project-title">Mobile Price Classification</h3>
                     </div>
                     <p class="project-description">
-                        A Machine learning model that classifies phone prices using predictive algorithms based on phone specifications.
+                        A Machine Learning model that classifies phone prices using predictive algorithms
+                        based on phone specifications including RAM, battery, camera, and connectivity features.
                     </p>
                 </div>
             </div>
 
             <!-- PROJECT 4 -->
             <div class="project-card">
-                <img src="assets/images/project4.jpg" class="project-img">
+                <img
+                    src="assets/images/project4.jpg"
+                    class="project-img"
+                    alt="Single Cycle CPU Design — computer architecture datapath project">
                 <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">Architecture</span>
+                        <span class="project-tag">Logic Design</span>
+                    </div>
                     <div class="project-header">
                         <h3 class="project-title">Single Cycle CPU Design</h3>
                     </div>
                     <p class="project-description">
-                        Designed a Single Cycle CPU by implementing the datapath and control logic required to execute instructions within a single clock cycle.
+                        Designed a Single Cycle CPU by implementing the datapath and control logic
+                        required to execute instructions within a single clock cycle, including
+                        ALU, register file, and memory units.
                     </p>
                 </div>
             </div>
 
         </div>
+
+        <!-- empty search state -->
+        <p id="empty-message" class="empty-message">No projects found. Try another search.</p>
+
     </div>
 </section>
 
@@ -134,25 +205,36 @@
 <section id="contact" class="section">
     <div class="container narrow">
         <h2>Contact</h2>
-        <form id="contact-form">
-            <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                required>
-            <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                required>
-            <textarea
-                name="message"
-                rows="4"
-                placeholder="Your Message"
-                required></textarea>
+        <form id="contact-form" novalidate>
+            <div class="form-group">
+                <label for="name-input">Your Name</label>
+                <input
+                    id="name-input"
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    autocomplete="name">
+            </div>
+            <div class="form-group">
+                <label for="email-input">Email Address</label>
+                <input
+                    id="email-input"
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    autocomplete="email">
+            </div>
+            <div class="form-group">
+                <label for="msg-input">Message</label>
+                <textarea
+                    id="msg-input"
+                    name="message"
+                    rows="4"
+                    placeholder="Your Message"></textarea>
+            </div>
             <button type="submit">Send Message</button>
         </form>
-        <p id="form-message" class="form-message"></p>
+        <p id="form-message" class="form-message" role="alert"></p>
     </div>
 </section>
 
