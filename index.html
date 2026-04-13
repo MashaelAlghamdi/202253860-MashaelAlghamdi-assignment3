@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mashael Alghamdi | Portfolio</title>
+    <meta name="description" content="Personal portfolio of Mashael Alghamdi, Computer Science student.">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- navbar -->
+<nav class="navbar">
+    <div class="container nav-content">
+        <div class="logo">Mashael</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
+    </div>
+</nav>
+
+<!-- hero section -->
+<header class="hero">
+    <div class="container hero-content">
+        <h1>Mashael Alghamdi</h1>
+        <p id="dynamic-greeting" class="subtitle"></p>
+        <p class="description">
+            A Computer Science student who is passionate about building structured and user-focused digital experiences.
+        </p>
+    </div>
+</header>
+
+<!-- random tech facts -->
+<div class="container narrow">
+    <div class="container narrow fact-box">
+        <h2>Random Tech Fact</h2>
+        <p id="api-data">Press the button to generate a fact.</p>
+        <button id="fact-btn">Generate Fact</button>
+    </div>
+    <div class="section-divider"></div>
+
+<!-- about section -->
+<section id="about" class="section">
+    <h2>About Me</h2>
+    <p>
+        An ambitious Computer Science student who enjoys building websites and learning new technologies while developing structured and user-friendly applications.
+    </p>
+    <p class="tagline"><em>Progress over perfection.</em></p>
+</section>
+</div>
+
+<!-- projects sections -->
+<section id="projects" class="section alt-section">
+    <div class="container">
+        <h2>Projects</h2>
+        <!-- Project Controls -->
+        <div class="project-controls">
+            <input
+                type="text"
+                id="project-search"
+                placeholder="Search projects..."
+                class="project-search">
+            <select id="project-sort" class="project-sort">
+                <option value="default">Default Order</option>
+                <option value="az">Sort A → Z</option>
+                <option value="za">Sort Z → A</option>
+            </select>
+        </div>
+
+        <div class="projects-wrapper">
+            <!-- PROJECT 1 -->
+            <div class="project-card">
+                <img src="assets/images/project1.jpg" class="project-img">
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">Horse Racing Database system</h3>
+                    </div>
+                    <p class="project-description">
+                        Designed and implemented a normalized relational database with optimized SQL queries.
+                    </p>
+                </div>
+            </div>
+
+            <!-- PROJECT 2 -->
+            <div class="project-card">
+                <img src="assets/images/project2.jpg" class="project-img">
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">Smart Traffic Light Controller</h3>
+                    </div>
+                    <p class="project-description">
+                        Finite State Machine implementation of a traffic light controller that manages signal transitions and timing between traffic phases using FGPA board.                    </p>
+                </div>
+            </div>
+
+            <!-- PROJECT 3 -->
+            <div class="project-card">
+                <img src="assets/images/project3.jpg" class="project-img">
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">Mobile Price Classification</h3>
+                    </div>
+                    <p class="project-description">
+                        A Machine learning model that classifies phone prices using predictive algorithms based on phone specifications.
+                    </p>
+                </div>
+            </div>
+
+            <!-- PROJECT 4 -->
+            <div class="project-card">
+                <img src="assets/images/project4.jpg" class="project-img">
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3 class="project-title">Single Cycle CPU Design</h3>
+                    </div>
+                    <p class="project-description">
+                        Designed a Single Cycle CPU by implementing the datapath and control logic required to execute instructions within a single clock cycle.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- contact section -->
+<section id="contact" class="section">
+    <div class="container narrow">
+        <h2>Contact</h2>
+        <form id="contact-form">
+            <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                required>
+            <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required>
+            <textarea
+                name="message"
+                rows="4"
+                placeholder="Your Message"
+                required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <p id="form-message" class="form-message"></p>
+    </div>
+</section>
+
+<!-- JS file -->
+<script src="js/script.js"></script>
+</body>
+</html>
