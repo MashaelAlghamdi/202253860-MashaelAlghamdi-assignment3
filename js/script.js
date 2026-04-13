@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-/* ── SELECT DOM ELEMENTS ─────────────────────────────── */
+// select DOM elemnents 
 const body        = document.body;
 const toggleBtn   = document.getElementById("theme-toggle");
 const greeting    = document.getElementById("dynamic-greeting");
@@ -18,14 +18,14 @@ const visitTimer  = document.getElementById("visit-timer");
 const emptyMsg    = document.getElementById("empty-message");
 
 
-/* ── 1. DARK MODE ─────────────────────────────────────── */
+// Dark mode - Load saved theme from localStorage and apply it
 const savedTheme = localStorage.getItem("theme");
 
 if(savedTheme === "dark"){
     body.classList.add("dark");
     if(toggleBtn) toggleBtn.textContent = "☀️";
 }
-
+// Toggle theme and save user preference
 if(toggleBtn){
     toggleBtn.addEventListener("click", () => {
         body.classList.toggle("dark");
@@ -36,7 +36,7 @@ if(toggleBtn){
 }
 
 
-/* ── 2. GREETING ─────────────────────────────────────── */
+// Display greeting based on current time
 if(greeting){
     const hour = new Date().getHours();
     let message = "";
@@ -52,7 +52,7 @@ if(greeting){
 }
 
 
-/* ── 3. VISIT TIMER ───────────────────────────────────── */
+// Track how long user stays on the page
 if(visitTimer){
     let seconds = 0;
 
@@ -70,7 +70,7 @@ if(visitTimer){
 }
 
 
-/* ── 4. PROJECT SEARCH ────────────────────────────────── */
+// Real-time search filtering 
 if(searchInput && emptyMsg){
     searchInput.addEventListener("input", () => {
 
@@ -88,18 +88,17 @@ if(searchInput && emptyMsg){
                 card.style.display = "none";
             }
         });
-
+        // Show message if no results found
         emptyMsg.style.display = visibleCount === 0 ? "block" : "none";
     });
 }
 
 
-
-/* ── 5. SORT PROJECTS ─────────────────────────────────── */
+// Sort projects alphabetically or restore original order
 if(sortSelect && container){
     sortSelect.addEventListener("change", () => {
 
-        const arr = [...cards];
+        const arr = [...cards];   // convert NodeList to array
 
         arr.sort((a,b) => {
             const A = a.querySelector("h3").textContent.toLowerCase();
@@ -113,12 +112,12 @@ if(sortSelect && container){
 
         arr.forEach(card => container.appendChild(card));
     });
-
+    // store original index for reset
     cards.forEach((card, i) => { card.dataset.index = i; });
 }
 
 
-/* ── 6. PROJECT ACCORDION ─────────────────────────────── */
+// Expand one project at a time
 titles.forEach(title => {
     title.addEventListener("click", () => {
 
@@ -132,7 +131,7 @@ titles.forEach(title => {
                 if(d) d.style.maxHeight = null;
             }
         });
-
+        // toggle current project
         card.classList.toggle("open");
 
         if(card.classList.contains("open")){
@@ -144,15 +143,13 @@ titles.forEach(title => {
 });
 
 
-/* ── 7. CONTACT FORM ─────────────────────────────────── */
-/* ── CONTACT FORM ─────────────────────────────────── */
+// Form validation with browser + custom logic
 if(form && formMessage){
 
     const nameField  = form.querySelector("input[name='name']");
     const emailField = form.querySelector("input[name='email']");
     const msgField   = form.querySelector("textarea[name='message']");
 
-    /* ── EMAIL VALIDATION (CUSTOM + LIVE) ───────────── */
 
     // show message on submit
     emailField.addEventListener("invalid", () => {
@@ -172,11 +169,9 @@ if(form && formMessage){
         }
     });
 
-    /* ── FORM SUBMIT ───────────────────────────────── */
-
+    // Handle form submission
     form.addEventListener("submit", e => {
 
-        // let browser handle email validation FIRST
         if(!form.checkValidity()){
             return;
         }
@@ -201,7 +196,7 @@ if(form && formMessage){
     });
 }
 
-/* ── 8. API ───────────────────────────────────────────── */
+// API
 if(apiContainer){
     apiContainer.textContent = "Press the button to generate a fact.";
 }
@@ -221,8 +216,9 @@ const languages = [
 "PHP"
 ];
 
-let shownFacts = new Set();
+let shownFacts = new Set();  // prevent duplicates
 
+// Start loading fact
 function loadFact(){
     if(!factButton) return;
 
@@ -235,7 +231,7 @@ function loadFact(){
 }
 
 function fetchFact(attempt){
-    if(attempt > 12){
+    if(attempt > 10){
         showFactResult("Sorry, we couldn't load a new fact. Please try again.");
         return;
     }
@@ -250,6 +246,7 @@ function fetchFact(attempt){
     .then(data => {
         const fact = data.extract.split(". ")[0] + ".";
 
+        // avoid duplicate facts
         if(shownFacts.has(fact)){
             fetchFact(attempt + 1);
             return;
@@ -270,19 +267,20 @@ function showFactResult(text){
     if(factLoader) factLoader.classList.remove("active");
     if(factButton) factButton.disabled = false;
 }
-
+// Button trigger
 if(factButton){
     factButton.addEventListener("click", loadFact);
 }
 
 
-/* ── 9. SCROLL REVEAL ─────────────────────────────────── */
+// Animate elements when they enter viewport
 const revealEls = document.querySelectorAll(
 ".project-card, .fact-box, #about, #contact .narrow"
 );
 
 revealEls.forEach(el => el.classList.add("reveal"));
 
+// observer for visibility
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if(entry.isIntersecting){
