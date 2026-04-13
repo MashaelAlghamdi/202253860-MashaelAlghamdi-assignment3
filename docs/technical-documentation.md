@@ -1,248 +1,276 @@
-# Technical Documentation 
-### Assignment 3 — SWE363 Web Development
+# Technical Documentation
 
+---
 
 ## 1. Project Overview
 
-This project is a static personal portfolio website.  
-It is built using only:
-- HTML5
-- CSS3
-- JavaScript (ES6+)
+This project is a static personal portfolio website built using:
 
-There are:
-- No frameworks
-- No backend
-- No build tools
+* HTML5
+* CSS3
+* JavaScript 
 
-The website:
-- Works on all screen sizes (responsive)
-- Supports both light mode and dark mode
+It does not use any frameworks or backend services. The goal is to demonstrate advanced front-end development skills including interactivity, state management, API integration, and performance optimization.
+
+The website is fully responsive and supports both light and dark themes.
 
 ---
 
-## 2. File Structure
+## 2. Technologies Used
 
-id-name-assignment3/
-├── index.html                 
-├── css/
-│   └── styles.css             
-├── js/
-│   └── script.js               
-├── assets/
-│   └── images/
-│       ├── project1.jpg        
-│       ├── project2.jpg    
-│       ├── project3.jpg       
-│       └── project4.jpg      
-├── docs/
-│   ├── ai-usage-report.md    
-│   └── technical-documentation.md 
-├── README.md               
-└── .gitignore             
+### HTML
 
----
+Provides the structure of the website and organizes content into clear sections such as navigation, hero, projects, and contact.
 
-## 3. HTML Structure (index.html)
+### CSS
 
-The page is divided into clear sections:
+Handles layout, styling, animations, and responsive design. Includes:
 
-| Section | Purpose |
-|--------|--------|
-| Navigation | Top bar with links and theme toggle |
-| Mobile Menu | Appears when clicking hamburger icon |
-| Hero | Main introduction (name, greeting, stats) |
-| About | Personal info and skills |
-| Projects | Shows projects with search and sort |
-| Tech Facts | Displays facts from Wikipedia API |
-| Contact | Form with validation |
-| Footer | Bottom section |
+* Flexbox layouts
+* Responsive media queries
+* Transitions and animations
+* Dark mode styling
 
-### Accessibility
-- All images have alt text  
-- Inputs have labels  
-- Buttons include aria-label when needed  
-- Form messages use role="alert"  
+### JavaScript
+
+Implements all interactive features including logic handling, state management, and API integration.
+
+### External API
+
+* Wikipedia REST API for dynamic programming facts
 
 ---
 
-## 4. CSS Architecture (styles.css)
+## 3. Website Structure
 
-### CSS Variables
-All design values (colors, spacing, fonts) are stored as variables in :root.
+| Section    | Description                     |
+| ---------- | ------------------------------- |
+| Navigation | Links + theme toggle            |
+| Hero       | Introduction + greeting + timer |
+| Tech Facts | API integration                 |
+| About      | Personal info                   |
+| Projects   | Interactive project system      |
+| Contact    | Form validation                 |
 
-Dark mode works by overriding these variables inside:
+---
+
+## 4. User Interaction Flow (Step-by-Step Guide)
+
+### 1. Landing Experience
+
+* User sees hero section
+* Dynamic greeting appears based on time
+* Visit timer starts automatically
+
+---
+
+### 2. Navigation
+
+* User clicks navbar links
+* Smooth scroll to sections
+
+---
+
+### 3. Projects Section (Main Interaction Area)
+
+#### Search (Real-time Filtering)
+
+* User types in search bar
+* Projects update instantly
+* Case-insensitive matching
+* If no results → message appears
+
+---
+
+#### Sorting
+
+* User selects:
+
+  * Default
+  * A → Z
+  * Z → A
+* Projects reorder dynamically
+
+---
+
+#### Accordion (Expand/Collapse)
+
+* Clicking a project:
+
+  * Opens description
+  * Closes other projects
+* Uses smooth animation
+
+---
+
+### 4. API Feature (Tech Facts)
+
+* User clicks "Generate Fact"
+* Loading spinner appears
+* Fact is fetched from API
+* Duplicate facts are avoided using a Set
+* Retries automatically if duplicate
+* Error message shown if request fails
+
+---
+
+### 5. Contact Form
+
+* User fills form
+
+Validation includes:
+
+* Required fields check
+* `.trim()` prevents empty spaces
+* Email validation using regex
+* Error or success message displayed
+* Form resets after success
+
+---
+
+### 6. Theme Toggle (State Management)
+
+* User switches between light/dark mode
+* Preference stored in `localStorage`
+* Theme persists after refresh
+
+---
+
+### 7. Additional Dynamic Features
+
+* **Visit Timer** updates every second
+* **Dynamic Greeting** based on time of day
+* **Scroll Reveal Animations** when elements enter viewport
+
+---
+
+## 5. JavaScript Features Implementation
+
+### Initialization
+
+```javascript
+document.addEventListener("DOMContentLoaded")
+```
+
+---
+
+### Implemented Features
+
+#### 1. Dark Mode
+
+* Uses `localStorage`
+* Toggles `dark` class
+
+#### 2. Dynamic Greeting
+
+* Uses `Date().getHours()`
+* Displays morning/afternoon/evening
+
+#### 3. Visit Timer
+
+* Uses `setInterval`
+* Displays seconds and minutes
+
+#### 4. Search
+
+* Uses `.includes()`
+* Filters DOM elements
+
+#### 5. Sorting
+
+* Uses `.localeCompare()`
+* Reorders DOM dynamically
+
+#### 6. Accordion
+
+* Uses `max-height` animation
+* Only one open at a time
+
+#### 7. Form Validation
+
+* `.trim()` for empty inputs
+* Regex for email
+* Dynamic feedback messages
+
+#### 8. API Integration
+
+* Fetch request to Wikipedia API
+* Uses retry logic (max attempts)
+* Prevents duplicates with `Set`
+* Error handling using `.catch()`
+
+#### 9. Scroll Animations
+
+* Uses `IntersectionObserver`
+* Adds `.visible` class
+* Stops observing after trigger
+
+---
+
+## 6. CSS Architecture
+
+### Theming
+
+* Uses:
+
+```css
 body.dark { ... }
-
-This avoids repeating styles.
-
----
-
-### Typography
-- Headings → DM Serif Display  
-- Body text → DM Sans  
-- Uses clamp() so text scales automatically  
-
----
-
-### Animations
-- Uses CSS transitions for hover effects  
-- Keyframe animations for hero section  
-- Scroll animations are triggered using JavaScript (IntersectionObserver)  
-- JavaScript is NOT used for animations that CSS can handle  
-
----
+```
 
 ### Responsive Design
-- Breakpoint at 900px (tablet/mobile)
-- Breakpoint at 500px (small screens)
-- Projects go from 3 columns → 1 column on mobile
-- Navbar links are hidden on mobile and replaced with a hamburger menu  
+
+* Uses media queries:
+
+```css
+@media(max-width:768px)
+```
+
+### Animations
+
+* Uses `transform` and `opacity`
+* Avoids heavy JS animations
 
 ---
 
-## 5. JavaScript Functionality (script.js)
+## 7. Performance Optimizations
 
-### 5.1 Theme Toggle
-- Reads saved theme from localStorage
-- Toggles dark mode when button is clicked
-- Saves preference again
-
----
-
-### 5.2 Dynamic Greeting
-- Uses current time (new Date().getHours())
-- Displays greeting like "Good Morning"
+* Lazy loading images
+* IntersectionObserver instead of scroll events
+* Cached DOM elements
+* No external libraries
+* Efficient CSS transitions
+* Reduced unnecessary reflows
 
 ---
 
-### 5.3 Visit Timer
-- Runs every second using setInterval
-- Shows time like:
-  - Seconds → Xs
-  - Minutes + seconds → Xm Xs
-
----
-
-### 5.4 Navbar Scroll Effect
-- Listens to scroll event
-- Adds .scrolled class when scrolling down
-- Applies blur effect using backdrop-filter
-
----
-
-### 5.5 Project Search
-- Runs when user types in search input
-- Checks if project title includes typed text
-- Hides non-matching projects
-- Shows message if no results found  
-
----
-
-### 5.6 Project Sort
-- Triggered when dropdown changes
-- Converts project cards into array
-- Sorts using .localeCompare()
-- Reorders them on the page
-- Can restore original order  
-
----
-
-### 5.7 Accordion (Expand/Collapse)
-- Clicking project title:
-  1. Closes other open projects
-  2. Opens clicked project
-  3. Uses max-height for smooth animation  
-
----
-
-### 5.8 Contact Form Validation
-On submit:
-1. Check fields are not empty  
-2. Validate email using regex  
-3. Show message:
-   - Red → error  
-   - Green → success  
-4. Reset form after success  
-5. Message disappears after 4 seconds  
-
----
-
-### 5.9 Wikipedia API Integration
-
-API URL:
-https://en.wikipedia.org/api/rest_v1/page/summary/{article}
-
-Steps:
-- Pick random programming language  
-- Fetch summary  
-- Show first sentence  
-
-Uses:
-- Set to avoid repeated facts  
-- Retry up to 12 times if duplicate  
-- .catch() for errors  
-- Loading spinner while fetching  
-
----
-
-### 5.10 Scroll Reveal Animation
-- Uses IntersectionObserver
-- When element appears:
-  - Add .visible class
-- Animation uses:
-  - opacity
-  - translateY
-- Stops observing after showing (better performance)
-
----
-
-## 6. API Documentation
-
-Wikipedia REST API
-
-Base URL:
-https://en.wikipedia.org/api/rest_v1/
-
-Endpoint:
-GET /page/summary/{title}
-
-Data used:
-- extract → article summary  
-
-No authentication required  
-Works directly in browser (CORS enabled)  
-
----
-
-## 7. Browser Compatibility
+## 8. Browser Compatibility
 
 Supported in modern browsers:
 
-| Feature | Support |
-|--------|--------|
-| CSS Variables | All modern browsers |
-| backdrop-filter | Supported |
-| IntersectionObserver | Supported |
-| color-mix() | Modern browsers only |
-| clamp() | Supported |
-| Fetch API | Supported |
-
----
-
-## 8. Performance Optimizations
-
-- Images use loading="lazy"  
-- Fonts use preconnect  
-- Scroll animations use IntersectionObserver  
-- No external libraries (faster load)  
-- CSS animations use transform and opacity  
-- DOM elements are selected once and reused  
+* CSS Variables
+* Fetch API
+* IntersectionObserver
+* clamp()
 
 ---
 
 ## 9. Known Limitations
 
-- Contact form does not send real emails (no backend)  
-- Wikipedia API may be slow sometimes  
-- color-mix() may not work on older browsers  
+* No backend (form is front-end only)
+* API may fail occasionally
+* Some modern CSS features have limited support
+
+---
+
+## 10. Summary
+
+This project demonstrates:
+
+* Advanced UI interaction
+* State management
+* API integration
+* Performance optimization
+
+It focuses on building a clean, interactive, and user-friendly experience using only core web technologies.
+
+---
