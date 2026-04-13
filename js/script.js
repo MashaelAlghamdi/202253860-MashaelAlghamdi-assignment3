@@ -78,9 +78,10 @@ if(searchInput && emptyMsg){
         let visibleCount = 0;
 
         cards.forEach(card => {
-            const title = card.querySelector("h3").textContent.toLowerCase();
+            const title = card.querySelector("h3").textContent.toLowerCase().trim();
+            const firstWord = title.split(" ")[0];
 
-            if(title.includes(value)){
+            if(firstWord.startsWith(value)){
                 card.style.display = "flex";
                 visibleCount++;
             }else{
@@ -91,6 +92,7 @@ if(searchInput && emptyMsg){
         emptyMsg.style.display = visibleCount === 0 ? "block" : "none";
     });
 }
+
 
 
 /* ── 5. SORT PROJECTS ─────────────────────────────────── */
@@ -143,38 +145,61 @@ titles.forEach(title => {
 
 
 /* ── 7. CONTACT FORM ─────────────────────────────────── */
+/* ── CONTACT FORM ─────────────────────────────────── */
 if(form && formMessage){
+
+    const nameField  = form.querySelector("input[name='name']");
+    const emailField = form.querySelector("input[name='email']");
+    const msgField   = form.querySelector("textarea[name='message']");
+
+    /* ── EMAIL VALIDATION (CUSTOM + LIVE) ───────────── */
+
+    // show message on submit
+    emailField.addEventListener("invalid", () => {
+        emailField.setCustomValidity("Please enter a valid email (example: name@email.com)");
+    });
+
+    // live validation while typing
+    emailField.addEventListener("input", () => {
+
+        const email = emailField.value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if(!emailPattern.test(email)){
+            emailField.setCustomValidity("Please enter a valid email (example: name@email.com)");
+        }else{
+            emailField.setCustomValidity(""); // clears only when valid
+        }
+    });
+
+    /* ── FORM SUBMIT ───────────────────────────────── */
+
     form.addEventListener("submit", e => {
+
+        // let browser handle email validation FIRST
+        if(!form.checkValidity()){
+            return;
+        }
+
         e.preventDefault();
 
-        const nameField  = form.querySelector("input[name='name']");
-        const emailField = form.querySelector("input[name='email']");
-        const msgField   = form.querySelector("textarea[name='message']");
+        const name = nameField.value.trim();
+        const msg  = msgField.value.trim();
 
-        formMessage.textContent = "";
-
-        if(!nameField.value.trim() || !emailField.value.trim() || !msgField.value.trim()){
+        // check other fields
+        if(!name || !msg){
             formMessage.style.color = "#e53935";
             formMessage.textContent = "⚠ Please fill in all fields.";
             return;
         }
 
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if(!emailPattern.test(emailField.value.trim())){
-            formMessage.style.color = "#e53935";
-            formMessage.textContent = "⚠ Please enter a valid email address.";
-            return;
-        }
-
+        // success
         formMessage.style.color = "#16a34a";
         formMessage.textContent = "✓ Message sent successfully!";
-        form.reset();
 
-        setTimeout(() => { formMessage.textContent = ""; }, 3000);
+        form.reset();
     });
 }
-
 
 /* ── 8. API ───────────────────────────────────────────── */
 if(apiContainer){

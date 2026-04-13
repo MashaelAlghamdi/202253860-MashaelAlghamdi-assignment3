@@ -95,7 +95,7 @@ AI tools including Claude, ChatGPT, and GitHub Copilot were used as development 
 
 Claude was mainly used for generating ideas and solving specific problems, such as designing the Wikipedia API logic and improving the contact form validation. It also helped identify issues like handling inputs with only spaces, which I fixed using .trim(), and suggested improvements for layout and performance.
 
-ChatGPT was used to better understand JavaScript concepts and logic, such as how search filtering and validation work. This helped me ensure I fully understood the implementation before finalizing the code.
+ChatGPT was used to better understand JavaScript concepts and logic, such as how search filtering and validation work. This helped ensure full understanding of the implementation before finalizing the code. It was also used to assist in improving the clarity, structure, and organization of the project documentation.
 
 GitHub Copilot was used inside VS Code to assist with code completion and repetitive CSS patterns, especially for dark mode styling. All suggestions were reviewed and adjusted when necessary.
 

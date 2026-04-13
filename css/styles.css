@@ -51,6 +51,50 @@ margin:auto;
 text-align:center;
 }
 
+.hero-name{
+display:flex;
+flex-direction:column;
+align-items:center;
+
+font-family:"Playfair Display", serif;
+line-height:1.1;
+letter-spacing:-0.5px;
+}
+
+/* FIRST NAME (bigger + animated gradient) */
+.first-name{
+margin-top:150px;
+font-size:6.5rem;   /* bigger */
+font-weight:600;
+
+background:linear-gradient(270deg,#6366f1,#a5b4fc,#6366f1);
+background-size:200% 200%;
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+animation:gradientMove 4s ease infinite;
+}
+
+/* LAST NAME */
+.last-name{
+font-size:5rem;
+font-weight:700;
+
+background:linear-gradient(270deg,#e5e7eb,#a5b4fc,#e5e7eb);
+background-size:200% 200%;
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+animation:gradientMove 6s ease infinite;
+}
+
+@keyframes gradientMove{
+0%{ background-position:0% 50%; }
+50%{ background-position:100% 50%; }
+100%{ background-position:0% 50%; }
+}
 /* ── FACT BOX ─────────────────────────────────────────── */
 .fact-box{
 background:linear-gradient(135deg,#ffffff,#f5f7ff);
